@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-2">
+        Hi <%= @user.first_name %>
+    </div>
+    <div class="col-6"></div>
+    <div class="col-4">
+        <a href="/dashboard/<%= @user.id %>"> Go to Dashboard</a> &nbsp; <a href="/logout" data-method="delete">Logout</a>
+    </div>
+</div>
+
+<div>
+    <table class=table>
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Seller</th>
+            <th>Date Posted</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% @shoes.each do |shoe| %>
+            <tr>
+                <td><%= shoe.product %></td>
+                
+                <td> <%= shoe.user.first_name %> <%= shoe.user.last_name %></td>
+                <td><%= shoe.created_at %></td>
+                <td>$<%= shoe.amount %></td>
+                <td><form action="/shoes/<%= shoe.id %>" method="POST">
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+                    <button type="submit">Buy</button>
+                    </form>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+        
+    </table>
+
+</div>

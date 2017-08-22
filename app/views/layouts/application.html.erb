@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shoes</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <% if flash[:notice] %>
+  <% flash[:notice].each do |item| %>
+    <div class="alert alert-success alert-dismissible" role="alert" id="notice">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <strong><%= item %></strong>
+    </div>
+  <% end %>
+  <% end %>
+
+  <% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  <div class="alert alert-danger alert-dismissible" role="alert" id="errors">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong><%= error %></strong>
+  </div>
+  <% end %>
+  <% end %>
+
+
+<div class="container">
+
+    <%= yield %>
+
+</div>
+
+</body>
+</html>
